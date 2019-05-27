@@ -1,0 +1,20 @@
+
+### Minimal create template
+aws ec2 create-launch-template --launch-template-name TemplateForRedditWebServer --version-description WebVersion1 --launch-template-data '{"ImageId":"ami-07b3124f3fa185986","InstanceType":"t2.micro"}'
+
+
+### Create ASG
+aws autoscaling create-auto-scaling-group --auto-scaling-group-name 'ASGforReddit' --launch-template LaunchTemplateName='TemplateForRedditWebServer' --min-size 2 --max-size 3 --availability-zones 'us-west-1b' 'us-west-1c'
+
+aws autoscaling describe-auto-scaling-groups
+
+
+### Create LB
+
+aws elb create-load-balancer --load-balancer-name 'RedditLB' --listeners Protocol='http',LoadBalancerPort=80,InstanceProtocol='http',InstancePort=80 --availability-zones 'us-west-1b' 'us-west-1c' --security-groups 'sg-eb611793'
+
+### Attach LB to ASG
+
+aws autoscaling attach-load-balancers --auto-scaling-group-name 'ASGforREddit' --load-balancer-names 'RedditLB'
+
+

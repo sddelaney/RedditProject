@@ -7,7 +7,8 @@ aws ec2 run-instances --image-id ami-015954d5e5548d13b --count 1 --instance-type
 ### Find volume of image - create snapshot - create image in console
 
 aws ec2 describe-volumes
-aws ec2 create-snapshot --volume-id vol-0c5f968c47561ebdb
+aws ec2 create-snapshot --volume-id vol-xxxxxxxxx
+aws ec2 register-image --name test --root-device-name /dev/xvda --block-device-mappings  '[{"DeviceName": "/dev/xvda", "Ebs": {"SnapshotId": "snap-xxxxxxx", "VolumeSize": 8}}]' --virtualization-type 'hvm'
 
 ### ud.txt: (Lamp install)
 
