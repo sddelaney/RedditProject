@@ -4,6 +4,10 @@
 ### Command to start instance with website copied from S3
 aws ec2 run-instances --image-id ami-015954d5e5548d13b --count 1 --instance-type t2.micro --key-name w1keypair --user-data file://ud.txt --iam-instance-profile Name='MyS3AdminAccess'
 
+### Find volume of image - create snapshot - create image in console
+
+aws ec2 describe-volumes
+aws ec2 create-snapshot --volume-id vol-0c5f968c47561ebdb
 
 ### ud.txt: (Lamp install)
 
