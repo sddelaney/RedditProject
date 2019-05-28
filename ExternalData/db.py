@@ -51,6 +51,7 @@ def put_item1(tablename, item):
 
 @cli.command('scan-table')
 @click.argument('tablename')
+@click.pass_context
 def scan_table(tablename):
 	"Scan table for all items"
 	table = db.Table(tablename)
